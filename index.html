@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Los Pollos Hermanos presents | Синий Мет Во Все Тяжкие</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #0b2b1f, #03100a);
+            font-family: 'Inter', sans-serif;
+            color: #eef4ff;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+
+        /* мерцающий кристаллический фон */
+        .glitter-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: radial-gradient(2px 2px at 20px 30px, #4affb5, rgba(0,0,0,0)),
+                              radial-gradient(3px 3px at 80px 240px, #00e0ff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 60px 60px, 120px 120px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* хедер - стиль лос поллос эрманос но с химическим оттенком */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #2e9b6e;
+            padding-bottom: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #b9ffdf, #30cf8c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px rgba(0,255,170,0.3);
+        }
+
+        .logo span {
+            font-size: 1rem;
+            background: none;
+            color: #afdbc4;
+            font-weight: 400;
+        }
+
+        .badge {
+            background: #11181c;
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1rem;
+            border-radius: 80px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid #34d399;
+            box-shadow: 0 0 6px #34d39966;
+        }
+
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff, #6effb0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-text .tagline {
+            font-size: 1.2rem;
+            color: #c1ffdd;
+            border-left: 4px solid #30cf8c;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-weight: 500;
+        }
+
+        .hero-text p {
+            font-size: 1rem;
+            color: #cbd5e6;
+            max-width: 500px;
+        }
+
+        .crystal-card {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 3rem;
+            padding: 1.5rem;
+            border: 1px solid #3adf8e77;
+            box-shadow: 0 20px 35px -15px black, 0 0 15px rgba(66, 255, 156, 0.2);
+            text-align: center;
+        }
+
+        .crystal-img {
+            font-size: 7rem;
+            filter: drop-shadow(0 0 12px #26e68a);
+            animation: pulse 3s infinite ease;
+        }
+
+        @keyframes pulse {
+            0% { text-shadow: 0 0 2px #6effaa; filter: drop-shadow(0 0 3px #42f5a0);}
+            50% { text-shadow: 0 0 18px #b5ffdb; filter: drop-shadow(0 0 20px #37f79c);}
+            100% { text-shadow: 0 0 2px #6effaa; filter: drop-shadow(0 0 3px #42f5a0);}
+        }
+
+        .purity {
+            font-family: monospace;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: #0f2a1f;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 2rem;
+            margin: 1rem 0;
+            letter-spacing: 2px;
+            color: #b2ffcf;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0.5rem 0;
+        }
+
+        .price small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #b0d2c0;
+        }
+
+        /* кнопки и карточки товаров */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(95deg, #1f6e48, #0c412c);
+            border: none;
+            padding: 0.9rem 2rem;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            margin-top: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            background: linear-gradient(95deg, #279c64, #0f6b44);
+            transform: scale(1.02);
+            box-shadow: 0 0 12px #53ffa6;
+            cursor: pointer;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #5ef0a8;
+            color: #caffea;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 3rem 0 1.5rem;
+            display: inline-block;
+            border-bottom: 4px solid #34d399;
+            padding-bottom: 5px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .product-card {
+            background: rgba(10, 25, 20, 0.75);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: 0.2s;
+            border: 1px solid #317a57;
+        }
+
+        .product-card:hover {
+            border-color: #6effbb;
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.65);
+        }
+
+        .product-icon {
+            font-size: 3.5rem;
+        }
+
+        .product-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            margin: 0.5rem 0;
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            margin: 0.8rem 0;
+            color: #bdd9cb;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #a5ffcd;
+        }
+
+        /* комичный блок отзывов */
+        .reviews {
+            background: rgba(0,0,0,0.45);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            margin-top: 2rem;
+            border: 1px solid #368158;
+        }
+
+        .review-item {
+            border-bottom: 1px solid #2f7352;
+            padding: 1rem 0;
+            font-style: italic;
+        }
+
+        .review-author {
+            font-weight: bold;
+            color: #baf7d9;
+        }
+
+        /* модалка */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #10261d;
+            max-width: 400px;
+            width: 90%;
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid #5effb4;
+            box-shadow: 0 0 50px rgba(0,255,150,0.3);
+        }
+
+        .modal-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .close-modal {
+            background: #3c2e2e;
+            margin-top: 1rem;
+            padding: 0.5rem 1.2rem;
+        }
+
+        /* футер */
+        .footer {
+            margin-top: 4rem;
+            text-align: center;
+            font-size: 0.75rem;
+            border-top: 1px solid #287a56;
+            padding-top: 2rem;
+            color: #83b59f;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 1rem; }
+            .hero-text h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="glitter-bg"></div>
+<div class="container">
+    <div class="header">
+        <div class="logo">🔷 AZURE BLUE <span>chemistry™</span></div>
+        <div class="badge">⚛️ 99.1% pure · лаб. сертификат Heisenberg</div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Синий Мет<br>легендарная чистота</h1>
+            <div class="tagline">«Тот самый кристалл из пустыни Нью-Мексико»</div>
+            <p>Эксклюзивная партия. Только для коллекционеров, ценителей кинематографа и фанатов вселенной «Во все тяжкие». Гиперреалистичные сувениры и шуточные сертификаты.</p>
+            <button class="btn" id="orderHeroBtn">🔹 Получить сияние 🔹</button>
+        </div>
+        <div class="crystal-card">
+            <div class="crystal-img">💎🔷💎</div>
+            <div class="purity">ЧИСТОТА 99.1%</div>
+            <div class="price">$399 <small>/ хрустальный артефакт</small></div>
+            <div class="badge" style="background: #0a1e15;">⭐ ЛУЧШИЙ СУВЕНИР ГОДА по версии Los Pollos</div>
+        </div>
+    </div>
+
+    <!-- ассортимент -->
+    <div>
+        <h2 class="section-title">⚗️ Выбери свой уровень 🧪</h2>
+        <div class="products" id="productsContainer">
+            <!-- карточки наполняются js, но продублирую статически для надежности -->
+        </div>
+    </div>
+
+    <!-- иконичные отзывы -->
+    <div class="reviews">
+        <h3 style="display: flex; gap: 12px; align-items: center;">📣 Мнение клиентов (не юристов, правда) 👇</h3>
+        <div class="review-item">
+            <div class="review-author">🧪 Walter White (не вымысел)</div>
+            <div>«Я — тот, кто стучит. И этот сайт — единственный официальный мерч, который я могу одобрить. Синий цвет идеален.»</div>
+        </div>
+        <div class="review-item">
+            <div class="review-author">🍗 Gustavo Fring</div>
+            <div>«Элегантный бизнес. Предлагаю сотрудничество с Los Pollos Hermanos. Подарочные наборы к обеду.»</div>
+        </div>
+        <div class="review-item">
+            <div class="review-author">⚡ Jesse Pinkman</div>
+            <div>«Йо, чувак, это легально? Ну, типа соль для ванн да? Но выглядит улётно! Надо брать, бро!»</div>
+        </div>
+        <div class="review-item">
+            <div class="review-author">🔫 Saul Goodman</div>
+            <div>«Покупайте смело — юридически это “декоративные минералы”. И не забудьте мой совет: просто “лучше звоните Солу”, если что.»</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        ⚠️ Шуточный сайт. Никаких реальных веществ. Исключительно фанатский мерч в честь сериала «Во все тяжкие». Все совпадения случайны. Heisenberg не одобряет реальное производство.<br>
+        © 2025 AZURE BLUE industries — кристально чистая ностальгия.
+    </div>
+</div>
+
+<!-- модалка заказа -->
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <h3>💎 ЗАКАЗ СИНЕГО МЕТА 💎</h3>
+        <p style="margin: 12px 0;">Вы выбрали легендарный сувенир. Пожалуйста, оставьте данные, чтобы мы связались с вами для оформления (разумеется, шуточного).</p>
+        <input type="text" id="customerName" placeholder="Ваше имя (например, Густаво)" style="width: 100%; padding: 12px; border-radius: 40px; border: none; margin: 8px 0; background: #273b30; color: white;">
+        <input type="email" id="customerEmail" placeholder="Email для кристаллического чека" style="width: 100%; padding: 12px; border-radius: 40px; border: none; margin: 8px 0; background: #273b30; color: white;">
+        <select id="productSelectModal" style="width: 100%; padding: 12px; border-radius: 40px; background: #273b30; color: #e2ffe8; margin: 8px 0;"></select>
+        <button class="btn" id="submitOrderBtn" style="margin-top: 16px;">✅ Оформить прикол ✅</button>
+        <button class="btn close-modal" style="background: #2e4137; margin-top: 8px;">Закрыть</button>
+    </div>
+</div>
+
+<!-- модалка подтверждения -->
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <div style="font-size: 4rem;">🔷🧪🔷</div>
+        <h3>Say my name!</h3>
+        <p>Ваш шуточный заказ принят! В ближайшее время с вами свяжется «Хайзенберг» с поздравлением. Кристаллический привет из Нью-Мексико. 💎</p>
+        <button class="btn close-success" style="background: #106e48;">Понял, принял</button>
+    </div>
+</div>
+
+<script>
+    // Товары — шуточные позиции, отсылающие к сериалу
+    const products = [
+        { id: 0, name: "🔷 Кристалл "Истина Синего"", desc: "Точная реплика культового камня. Светится под УФ. 99.1% чистота (по ощущениям).", price: "399", icon: "💠" },
+        { id: 1, name: "🧪 Лабораторный набор "RV Special"", desc: "Пробирка с синими кристаллами + наклейка Los Pollos. Идеально для косплея.", price: "199", icon: "🧪" },
+        { id: 2, name: "🐻 Розовый Мишка (лимит)", desc: "Синий мет внутри плюшевого мишки? Нет, просто брелок-сюрприз с сертификатом чистоты.", price: "49", icon: "🐻" },
+        { id: 3, name: "👒 Шляпа Хайзенберга", desc: "Черная федора + синий значок кристалла. Стиль и угроза в одном флаконе.", price: "89", icon: "🎩" }
+    ];
+
+    const productSelectModal = document.getElementById('productSelectModal');
+    const productsContainer = document.getElementById('productsContainer');
+    const orderModal = document.getElementById('orderModal');
+    const successModal = document.getElementById('successModal');
+    let selectedProductForModal = null; // для prefill модалки
+
+    function renderProducts() {
+        if (!productsContainer) return;
+        productsContainer.innerHTML = '';
+        products.forEach(prod => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-icon">${prod.icon}</div>
+                <div class="product-title">${prod.name}</div>
+                <div class="product-desc">${prod.desc}</div>
+                <div class="product-price">$${prod.price}</div>
+                <button class="btn buy-product-btn" data-id="${prod.id}" style="margin-top: 12px; padding: 0.5rem 1rem; font-size: 0.9rem;">💎 Хочу сияние</button>
+            `;
+            productsContainer.appendChild(card);
+        });
+        // добавляем обработчики на кнопки каждого товара
+        document.querySelectorAll('.buy-product-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.getAttribute('data-id'));
+                const product = products.find(p => p.id === id);
+                if (product) {
+                    openOrderModal(product);
+                }
+            });
+        });
+    }
+
+    // заполнить select в модалке
+    function populateSelectModal(selectedProductId = null) {
+        if (!productSelectModal) return;
+        productSelectModal.innerHTML = '';
+        products.forEach(prod => {
+            const option = document.createElement('option');
+            option.value = prod.id;
+            option.textContent = `${prod.name} — $${prod.price}`;
+            if (selectedProductId !== null && prod.id === selectedProductId) {
+                option.selected = true;
+            }
+            productSelectModal.appendChild(option);
+        });
+    }
+
+    function openOrderModal(product = null) {
+        if (product) {
+            selectedProductForModal = product;
+            populateSelectModal(product.id);
+        } else {
+            selectedProductForModal = null;
+            populateSelectModal(null);
+        }
+        orderModal.style.display = 'flex';
+    }
+
+    function closeModal(modalElement) {
+        if (modalElement) modalElement.style.display = 'none';
+    }
+
+    // сабмит заказа (шуточная обработка)
+    function submitOrder() {
+        const nameInput = document.getElementById('customerName');
+        const emailInput = document.getElementById('customerEmail');
+        const selectElem = document.getElementById('productSelectModal');
+        let name = nameInput.value.trim();
+        let email = emailInput.value.trim();
+        let productId = selectElem ? parseInt(selectElem.value) : (selectedProductForModal ? selectedProductForModal.id : 0);
+        const chosenProduct = products.find(p => p.id === productId) || products[0];
+
+        if (!name) {
+            alert("🧪 Введите имя, хотя бы как «Джесси»!");
+            return;
+        }
+        if (!email || !email.includes('@')) {
+            alert("📧 Введите почту для отправки шуточного подтверждения (интересно же)");
+            return;
+        }
+
+        // сохраняем заказ в localStorage для "истории" (чисто для атмосферы)
+        const fakeOrders = JSON.parse(localStorage.getItem('breakingBadOrders') || '[]');
+        fakeOrders.push({
+            name: name,
+            email: email,
+            product: chosenProduct.name,
+            price: chosenProduct.price,
+            date: new Date().toLocaleString()
+        });
+        localStorage.setItem('breakingBadOrders', JSON.stringify(fakeOrders));
+        
+        // закрыть модалку заказа
+        closeModal(orderModal);
+        // показать успех
+        successModal.style.display = 'flex';
+        // очистить поля
+        nameInput.value = '';
+        emailInput.value = '';
+        // дополнительно можно очистить селект на дефолт
+        populateSelectModal(null);
+    }
+
+    // также обработка кнопки "Получить сияние" из хедера открывает модалку с первым товаром
+    function initEventListeners() {
+        const heroBtn = document.getElementById('orderHeroBtn');
+        if (heroBtn) {
+            heroBtn.addEventListener('click', () => {
+                openOrderModal(products[0]);
+            });
+        }
+
+        const closeBtns = document.querySelectorAll('.close-modal');
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', () => closeModal(orderModal));
+        });
+        const closeSuccess = document.querySelector('.close-success');
+        if(closeSuccess) {
+            closeSuccess.addEventListener('click', () => closeModal(successModal));
+        }
+        const submitBtn = document.getElementById('submitOrderBtn');
+        if(submitBtn) {
+            submitBtn.addEventListener('click', submitOrder);
+        }
+        // клик вне модалки для закрытия (по желанию)
+        window.addEventListener('click', (e) => {
+            if (e.target === orderModal) closeModal(orderModal);
+            if (e.target === successModal) closeModal(successModal);
+        });
+    }
+
+    // добавим немного пасхалки в консоль
+    console.log("%c🔷 Сайт синего мета — всё шутка! 🔷\nТолько сувениры и мемы. Лучше звоните Солу.", "color: #66ffcc; font-size: 14px; font-weight: bold;");
+
+    // бонус: если кликнуть на логотип 5 раз — секретный юмор
+    let logoClickCount = 0;
+    const logoElem = document.querySelector('.logo');
+    if(logoElem) {
+        logoElem.addEventListener('click', () => {
+            logoClickCount++;
+            if(logoClickCount === 5) {
+                alert('🧪🧊 "Я не в опасности, Скайлер. Я и есть опасность!" (с) Сувениры в наличии!');
+                logoClickCount = 0;
+            }
+        });
+    }
+
+    // запуск
+    renderProducts();
+    initEventListeners();
+    populateSelectModal(0);
+    // скрываем модалки на старте
+    orderModal.style.display = 'none';
+    successModal.style.display = 'none';
+</script>
+</body>
+</html>
